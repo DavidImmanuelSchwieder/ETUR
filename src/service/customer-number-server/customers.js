@@ -1,3 +1,7 @@
+import Report from '../report.js'
+
+index = 0;
+
 const customerSchema = {
     schema: {
         body: {
@@ -83,6 +87,30 @@ function validateCustomerId(customerId) {
     }
 
     return false;
+}
+
+function createReport(category, description, lables, owner, assignedTo, closedAt,
+    state, priotity, comments, closeReason, references)
+    {
+    const tempReport = new Report(
+        index,
+        category,
+        createCustomId(),
+        description,
+        lables,
+        owner,
+        assignedTo,
+        Date.now(),
+        Date.now(),
+        closedAt,
+        state,
+        priotity,
+        comments,
+        closeReason,
+        references
+    )
+    index++;
+    return tempReport;
 }
 
 export async function routes(fastify, options) {
