@@ -49,6 +49,10 @@ body
     border:5px solid darkcyan;
     
     
+    background-color:cadetblue;
+    border:5px solid darkcyan;
+    
+    
 }
 
 .card
@@ -58,9 +62,11 @@ body
     flex-direction: column;
     height: fit-content;
     border: 2px solid black;
+    border: 2px solid black;
     border-radius: 8px;
     padding-left: 2%;
     margin: 2%;
+    background-color:darkcyan;
     background-color:darkcyan;
     
 }
@@ -72,11 +78,22 @@ body
     border-radius: 4px;
     padding-left: 2%;
     margin: 2%;
+    background-color:darkcyan;
+    border: 2px solid black;
+    border-radius: 4px;
+    padding-left: 2%;
+    margin: 2%;
 }
 
 .customer-input-id{
     margin-top: 5%;
     height: 10%;
+    background-color:cadetblue;
+    border: 2px solid black;
+    border-radius: 8px;
+    padding-left: 2%;
+    margin: 2%;
+
     background-color:cadetblue;
     border: 2px solid black;
     border-radius: 8px;
@@ -96,6 +113,10 @@ body
     border: 2px solid black;
     border-radius: 8px;
     
+    background-color: darkcyan;
+    border: 2px solid black;
+    border-radius: 8px;
+    
 
 }
 
@@ -104,6 +125,9 @@ body
     flex-direction: column;
     width: 40%;
     align-items: center;
+    background-color: cadetblue;
+    border:5px solid darkcyan;
+
     background-color: cadetblue;
     border:5px solid darkcyan;
 
