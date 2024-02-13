@@ -1,33 +1,89 @@
+
 const inputName = document.getElementById("customer-name");
 const inputId = document.getElementById("customer-id");
 const createButton = document.getElementById("create-customer-btn");
 const searchButton = document.getElementById("customer-search");
 const cardList = document.getElementById("card-container");
 
-createButton.addEventListener("click", () => {
+// searchButton.addEventListener("click", () => {
+//     const customerId = document.getElementById("customer-id")
+// })
+document.getElementById('openFormButton').addEventListener('click', function() {
+    document.getElementById('modalBackdrop').style.display = 'block';
+    document.getElementById('formContainer').style.display = 'block'; 
+});
+
+document.getElementById('closeFormButton').addEventListener('click', function() {
+    document.getElementById('modalBackdrop').style.display = 'none'; 
+    document.getElementById('formContainer').style.display = 'none'; 
+});
+
+document.getElementById('idForm').addEventListener('submit', async function(event) {
+    event.preventDefault()
+    const id = document.getElementById('idInput').value; 
+    let result = document.getElementById('result');
+
+    const response = await fetch("http://localhost:3000/customers/verify/" + id)
+    const items = await response.json();
+    console.log(items)
+    if (items === true) {
+        console.log("Success")
+        result = document.getElementById('result');
+        result.style.color = "green";
+        result.textContent = 'Valid';
+    } else {
+        result = document.getElementById('result');
+        result.style.color = "red";
+        result.textContent = 'Not Valid';
+    }
+
+    // setTimeout(() => {
+        
+    // document.getElementById('modalBackdrop').style.display = 'none'; 
+    // document.getElementById('formContainer').style.display = 'none';
+    // document.getElementById('idInput').value = '';
+    // result.textContent = "";
+    //   }, 2000);
+});
+
+createButton.addEventListener("click", async () => {
     const name = inputName.value;
 
     try {
-        fetch("http://localhost:3000/customers", {
+        const response = await fetch("http://localhost:3000/customers", {
             method: "POST",
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ name: name })
-        })
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to create customer');
+        }
+
+        console.log("Customer created successfully");
+        // Clear the input field after successful creation
         inputName.value = "";
-        console.log("success");
-    }
-    catch (err) {
-        console.log(err)
+        // Update the customer list
+        await getAllCustomers();
+    } catch (err) {
+        console.error("Error creating customer:", err);
     }
 });
 
-async function getAllCustomer() {
+async function getCustomer(){
+    const response = await fetch("")
+}
+
+async function getAllCustomers() {
 
     const response = await fetch("http://localhost:3000/customers")
     const items = await response.json();
+
+    cardList.innerHTML = '';
+
     for(const item of items.customers){
         createCardItem(item.name, item.customerId);
     }
@@ -55,4 +111,4 @@ function success() {
 
 }
 
-getAllCustomer();
+getAllCustomers();
