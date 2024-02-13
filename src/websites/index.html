@@ -12,8 +12,17 @@
                 <div class="card-container" id="card-container">
                 </div>
                 <div class="customer-input-search-container">
-                <input class="customer-input-id" placeholder="Enter Customer ID"  type="text" id="customer-id" onkeyup="success()">
-                <button class="customer-search-btn" id="customer-search"><img src="../../assets/search_FILL0_wght400_GRAD0_opsz24.svg" alt=""></button>
+                <input class="customer-input-id" placeholder="Verify Customer ID"  type="text" id="customer-id" onkeyup="success()">
+                <button id="openFormButton">Open Form</button>
+            </div>
+            <div id="modalBackdrop" style="display: none;"></div>            
+            <div id="formContainer" style="display: none;">
+                <form id="idForm">
+                    Enter ID: <input type="text" id="idInput">
+                    <button type="submit">Send ID</button>
+                    <button type="button" id="closeFormButton">Close</button>
+                    <div id="result"></div>
+                </form>
             </div>
                 <div class="input-container">
                     <input class="customer-input" placeholder="Enter Customer Name" type="text" id="customer-name" onkeyup="success()">
