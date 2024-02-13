@@ -1,10 +1,37 @@
-import { getCustomers, createCustomer, readCustomer, deleteCustomer } from "./customers.js";
+const inputName = document.getElementById("customer-name");
+const inputId = document.getElementById("customer-id");
+const createButton = document.getElementById("create-customer-btn");
 
-const random = Math.round(Math.random())
+createButton.addEventListener("click", () => {
+    const name =  inputName.value;
+    
+    try{
+        fetch("http://localhost:3000/customers", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({name: name})
+        } )
+        inputName.value = "";
+        console.log("success");
+    }
+    catch(err)
+    {
+        console.log(err)
+    }
 
-createCustomer("ETUR-CN-34623", "Thomas");
-createCustomer("ETUR-CN-32143", "Carlos");
-console.log(readCustomer("ETUR-CN-32143"));
-// console.log("Delete: {0}",deleteCustomer(random));
-// console.log("Get: {0}",getCustomers());
 
+
+  });
+
+function success(){
+
+    if(document.getElementById("customer-name").value==="") { 
+        document.getElementById('create-customer-btn').disabled = true; 
+    } else { 
+        document.getElementById('create-customer-btn').disabled = false;
+    }
+
+}
