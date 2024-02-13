@@ -95,11 +95,6 @@ export async function routes(fastify, options) {
         const customer = readCustomer(id);
         return { customer }
     });
-    fastify.get('/customers/verify/:id', async (request, reply) => {
-        const { id } = request.params;
-        const response = validateCustomerId(id);
-        return response;
-    })
     fastify.post('/customers', customerSchema, async (request, reply) => {
         const { name } = request.body
         const response = createCustomer(createCustomId(), name);

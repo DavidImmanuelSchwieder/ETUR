@@ -23,10 +23,10 @@ document.getElementById('idForm').addEventListener('submit', async function(even
     const id = document.getElementById('idInput').value; 
     let result = document.getElementById('result');
 
-    const response = await fetch("http://localhost:3000/customers/verify/" + id)
+    const response = await fetch("http://localhost:3000/customers/" + id)
     const items = await response.json();
-    console.log(items)
-    if (items === true) {
+    console.log(items.customer)
+    if (items.customer !== null) {
         console.log("Success")
         result = document.getElementById('result');
         result.style.color = "green";
