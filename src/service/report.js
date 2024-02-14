@@ -20,3 +20,42 @@ export class Report{
         this.references = references;
     }
 }
+export function getReports(){
+    return reports;
+}
+const reports = []
+export function createReport(reportId,category,customerId,description,labels,owner,state,assignedTo,createdAt,priority,comments,references){
+
+    const tempReport = new Report(reportId,category,customerId,description,labels,owner,assignedTo,createdAt,priority,comments,references)
+    tempReport.reportdId = reportId
+    tempReport.category = category
+    tempReport.customerId = customerId
+    tempReport.description = description
+    tempReport.labels = labels
+    tempReport.owner = owner
+    tempReport.assignedTo = ""
+    tempReport.createdAt = Date.now()
+    tempReport.editedAt = Date.now()
+    tempReport.closedAt = ""
+    tempReport.state = state
+    tempReport.priority = ""
+    tempReport.comments = ""
+    tempReport.closeReason = ""
+    tempReport.references = ""
+    reports.push(tempReport);
+
+}
+export async function routesReport(fastify, options) {
+    fastify.get('/reports', async (request, reply) => {
+        const reports = getReports();
+        return { reports }
+    });
+    fastify.get('/reports/:id', async (request, reply) => {
+     
+    });
+    fastify.post('/reports',  async (request, reply) => {
+    
+        const response = createReport("90101","Feedback","ETUR-CN-32623","This Is a Description","Label","My self","Amerika")
+        return { response }
+    });
+}

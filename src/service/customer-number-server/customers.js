@@ -1,6 +1,6 @@
-import Report from '../report.js'
+import {Report} from '../report.js'
 
-index = 0;
+const index = 0;
 
 const customerSchema = {
     schema: {
@@ -15,7 +15,6 @@ const customerSchema = {
         }
     }
 }
-
 const customers = []
 export function createCustomId() {
 
@@ -40,6 +39,7 @@ export function getCustomers() {
     return customers;
 
 }
+
 
 export function createCustomer(id, name) {
     const customer = createCustomerObject();
@@ -89,30 +89,6 @@ function validateCustomerId(customerId) {
     return false;
 }
 
-function createReport(category, description, lables, owner, assignedTo, closedAt,
-    state, priotity, comments, closeReason, references)
-    {
-    const tempReport = new Report(
-        index,
-        category,
-        createCustomId(),
-        description,
-        lables,
-        owner,
-        assignedTo,
-        Date.now(),
-        Date.now(),
-        closedAt,
-        state,
-        priotity,
-        comments,
-        closeReason,
-        references
-    )
-    index++;
-    return tempReport;
-}
-
 export async function routes(fastify, options) {
     fastify.get('/customers', async (request, reply) => {
         const customers = getCustomers();
@@ -127,7 +103,7 @@ export async function routes(fastify, options) {
         const { name } = request.body
         const response = createCustomer(createCustomId(), name);
         return { response }
-    })
+    });
     fastify.delete('/customers/:id', async (request, reply) => {
         const { id } = request.params;
         const response = deleteCustomer(id)
@@ -135,6 +111,6 @@ export async function routes(fastify, options) {
             return "Couldn't find customer";
         }
         return { hello: 'The Customer got removed Successfully' }
-    })
+    });
 }
 
